@@ -1,0 +1,21 @@
+[server]
+headless = true
+enableCORS = false
+enableXsrfProtection = true
+
+[browser]
+serverAddress = "localhost"
+serverPort = 8501
+
+[client]
+showSidebarNavigation = false
+
+[ui]
+hideSidebarNav = false
+
+[theme]
+primaryColor = "#1f4e79"
+backgroundColor = "#ffffff"
+secondaryBackgroundColor = "#f8f9fa"
+textColor = "#31333F"
+font = "sans serif"
