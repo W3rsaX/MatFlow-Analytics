@@ -23,7 +23,7 @@ load_css()
 
 def main():
     if st.session_state.get('authentication_status'):
-        st.switch_page("pages/1_Analytics_Dashboard.py")
+        st.switch_page("pages/Analytics_Dashboard.py")
 
     st.image("assets/logo.png", width="stretch")
 
