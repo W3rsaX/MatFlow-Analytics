@@ -29,7 +29,7 @@ if 'authentication_status' not in st.session_state or not st.session_state.authe
     with container:
         col1, col2, col3 = st.columns([1, 2, 1])
         with col2:
-            if st.button("Перейти на страницу авторизации", use_container_width=True):
+            if st.button("Перейти на страницу авторизации", width='stretch'):
                 st.switch_page("Home.py")
 
     st.stop()
@@ -79,27 +79,27 @@ with st.sidebar:
     # Навигация
     st.subheader("Основные задачи", anchor=False)
 
-    if st.button("📈 Прогнозирование сроков поставки сырья", use_container_width=True):
-        st.switch_page("pages/2_Delivery_Forecast.py")
+    if st.button("📈 Прогнозирование сроков поставки сырья", width='stretch'):
+        st.switch_page("pages/1_Delivery_Forecast.py")
 
-    if st.button("🏷️ Кластеризация поставщиков", use_container_width=True):
-        st.switch_page("pages/3_Supplier_Clustering.py")
+    if st.button("🏷️ Кластеризация поставщиков", width='stretch'):
+        st.switch_page("pages/2_Supplier_Clustering.py")
 
-    if st.button("📋 План закупок сырья", use_container_width=True):
-        st.switch_page("pages/4_Procurement_Plan.py")
+    if st.button("📋 План закупок сырья", width='stretch'):
+        st.switch_page("pages/3_Procurement_Plan.py")
 
-    if st.button("📅 План обновления автопарка", use_container_width=True):
-        st.switch_page("pages/5_Auto_PLan.py")
+    if st.button("📅 План обновления автопарка", width='stretch'):
+        st.switch_page("pages/4_Auto_PLan.py")
 
-    if st.button("🛡️ Оптимизация страхового запаса сырья", use_container_width=True):
-        st.switch_page("pages/6_Safety_Stock.py")
+    if st.button("🛡️ Оптимизация страхового запаса сырья", width='stretch'):
+        st.switch_page("pages/5_Safety_Stock.py")
 
-    if st.button("⭐ Анализ поставщиков по качеству сырья", use_container_width=True):
-        st.switch_page("pages/7_Supplier_Quality.py")
+    if st.button("⭐ Анализ поставщиков по качеству сырья", width='stretch'):
+        st.switch_page("pages/6_Supplier_Quality.py")
 
     # Кнопка выхода
     st.markdown("---")
-    if st.button("🚪 Выйти из системы", use_container_width=True):
+    if st.button("🚪 Выйти из системы", width='stretch'):
         # Очищаем сессию
         for key in ['authentication_status', 'name', 'username', 'role']:
             if key in st.session_state:

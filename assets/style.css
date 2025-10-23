@@ -436,8 +436,69 @@ div[class="st-emotion-cache-14ecig9 e1q5ojhd0"] {
     justify-content: center !important;
 }
 
-
 .st-emotion-cache-3hw9cz{
     justify-content: left !important;
 }
 
+.st-emotion-cache-1q82h82{
+    color: var(--text-primary) !important;
+}
+
+text{
+    color: var(--text-primary) !important;
+}
+
+.st-emotion-cache-15jn9ue{
+    display: flex !important;
+}
+
+.st-emotion-cache-p38tq{
+    text-align: center;
+}
+
+.st-emotion-cache-7pf6at {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+ }
+
+.st-emotion-cache-qiev7j{
+    color: rgb(49, 51, 63);
+}
+
+.st-emotion-cache-7czcpc{
+    height: 500px !important;
+    width: 500px !important;
+}
+
+.st-d7{
+    background-color: #9370DB;
+}
+
+.st-au:has(div[role="slider"]) {
+    background: #9370DB;
+}
+
+div[data-testid="stSliderThumbValue"]{
+    color: rgb(240, 240, 240);
+}
+
+div [data-testid="stDownloadButton"] button {
+    background: linear-gradient(135deg, var(--primary-purple) 0%, var(--purple-dark) 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 10px !important;
+    padding: 0.8rem 2rem !important;
+    font-weight: 500 !important;
+    transition: all 0.3s ease !important;
+    width: 100%;
+    margin: 1rem auto 0 auto !important;
+    display: block !important;
+    font-size: 1rem !important;
+}
+
+div [data-testid="stDownloadButton"] button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(123, 104, 238, 0.4) !important;
+    background: linear-gradient(135deg, var(--purple-dark) 0%, var(--primary-purple) 100%) !important;
+}

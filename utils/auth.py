@@ -20,7 +20,7 @@ def login_form():
         username = st.text_input("Логин", placeholder="Введите ваш логин")
         password = st.text_input("Пароль", type="password", placeholder="Введите ваш пароль")
 
-        submitted = st.form_submit_button("Войти", use_container_width=True)
+        submitted = st.form_submit_button("Войти", width='stretch')
 
         if submitted:
             if not username or not password:
