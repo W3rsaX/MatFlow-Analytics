@@ -4,6 +4,7 @@ import pandas as pd
 import streamlit as st
 
 from utils.styles import load_css
+from displays.autoplan_4 import display_autoplan_results
 
 favicon_path = os.path.join('assets', 'logo.ico')
 
@@ -40,7 +41,7 @@ if uploaded_file:
         st.success("Данные успешно загружены!")
 
         if st.checkbox("Показать данные"):
-            st.dataframe(df.head())
+            st.dataframe(df, hide_index=True)
 
         # Анализ
         st.header("Решение ")
@@ -51,10 +52,14 @@ if uploaded_file:
             button_clicked = st.button("Решить", width='stretch', key="run_forecast")
 
         if button_clicked:
-            # Здесь будет реальная модель
-            st.success("План обновления автопарка составлен успешно!")
+            try:
 
-            st.subheader("Результаты")
+                # Запускаем отображение результатов
+                display_autoplan_results(df)
+
+            except Exception as e:
+                st.error(f"Ошибка при решении задачи: {str(e)}")
+                st.info("Проверьте формат входных данных и попробуйте снова")
 
     else:
         st.error("Ошибка загрузки файла")
