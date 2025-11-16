@@ -1,15 +1,15 @@
 import os
-
 import pandas as pd
 import streamlit as st
 
 from utils.styles import load_css
+from autoTasks.Task5 import Task5  # Импортируем класс для решения задачи
 
 favicon_path = os.path.join('assets', 'logo.ico')
 
 # Конфигурация страницы
 st.set_page_config(
-    page_title="ООО «Строй-Бетон» - Оптимизация страхового запаса сырья",
+    page_title="ООО «Строй-Бетон» - Оптимизация управления запасами сырья",
     page_icon=favicon_path,
     layout="centered",
     menu_items={
@@ -27,7 +27,7 @@ st.logo("assets/logo.png")
 if 'authentication_status' not in st.session_state or not st.session_state.authentication_status:
     st.switch_page("Home.py")
 
-st.title("Оптимизация страхового запаса сырья")
+st.title("Оптимизация управления запасами сырья")
 
 # Загрузка данных
 st.header("Загрузка данных")
@@ -36,14 +36,13 @@ uploaded_file = st.file_uploader("Загрузите данные (CSV)", type="
 if uploaded_file:
     df = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
     if df is not None:
-
         st.success("Данные успешно загружены!")
 
         if st.checkbox("Показать данные"):
-            st.dataframe(df.head())
+            st.dataframe(df.head(), hide_index=True)
 
         # Анализ
-        st.header("Решение ")
+        st.header("Решение")
 
         # Центрируем кнопку запуска прогноза
         col1, col2, col3 = st.columns([1, 1, 1])
@@ -51,11 +50,31 @@ if uploaded_file:
             button_clicked = st.button("Решить", width='stretch', key="run_forecast")
 
         if button_clicked:
-            # Здесь будет реальная модель
-            st.success("Оптимизация страхового запаса сырья выполнена успешно!")
+            try:
+                # Создаем экземпляр класса для решения задачи
+                task_solver = Task5()
 
-            st.subheader("Результаты")
+                # Решаем задачу
+                results = task_solver.solve(df)
 
+                # Сохраняем результаты в session_state для отображения на другой странице
+                st.session_state.task5_results = results
+
+                st.success("Оптимизация управления запасами сырья выполнена успешно!")
+
+                st.subheader("Результаты")
+
+                # Показываем результаты прямо на этой странице
+                results_df = pd.DataFrame({
+                    'Сырье': list(results.keys()),
+                    'Оптимальный размер поставки, т': list(results.values())
+                })
+
+                st.dataframe(results_df, hide_index=True)
+
+
+            except Exception as e:
+                st.error(f"Ошибка при решении задачи: {str(e)}")
     else:
         st.error("Ошибка загрузки файла")
 
@@ -63,7 +82,6 @@ with st.sidebar:
     if st.button("↩️ На главную страницу", width='stretch'):
         st.switch_page("pages/Analytics_Dashboard.py")
 
-    # Кнопка выхода
     st.markdown("---")
     if st.button("🚪 Выйти из системы", width='stretch'):
         # Очищаем сессию

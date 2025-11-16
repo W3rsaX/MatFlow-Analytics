@@ -52,7 +52,7 @@ def display_transportation_solution(solution_data):
         **{name: "{:.1f}" for name in demand_names}
     })
 
-    st.dataframe(styled_df, width='stretch')
+    st.dataframe(styled_df, width='stretch', hide_index=True)
 
     #Диаграмма потоков (Sankey)
     st.subheader("🔗 Визуализация потоков поставок")
@@ -126,7 +126,7 @@ def display_transportation_solution(solution_data):
                 'Стоимость за тонну, руб.': '{:.0f}',
                 'Общая стоимость, руб.': '{:,.0f}'
             }),
-            width='stretch'
+            width='stretch', hide_index=True
         )
     else:
         st.info("Нет активных поставок для отображения")

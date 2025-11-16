@@ -54,7 +54,7 @@ if uploaded_file:
             st.success("Данные успешно загружены!")
 
             if st.checkbox("Показать данные"):
-                st.dataframe(df)
+                st.dataframe(df, hide_index=True)
 
             # Анализ
             st.header("Решение")
