@@ -191,7 +191,7 @@ class ResultsDisplay:
         }
         display_df.rename(columns=column_names, inplace=True)
 
-        st.dataframe(display_df, width='stretch')
+        st.dataframe(display_df, width='stretch', hide_index=True)
 
 
 # Создаем глобальный экземпляр display

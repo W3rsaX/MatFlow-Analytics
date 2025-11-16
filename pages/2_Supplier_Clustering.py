@@ -56,7 +56,7 @@ if uploaded_file:
             st.success(f"Данные успешно загружены! Загружено {len(df)} поставщиков.")
 
             if st.checkbox("Показать данные"):
-                st.dataframe(df)
+                st.dataframe(df, hide_index=True)
 
             # Анализ
             st.header("Решение")

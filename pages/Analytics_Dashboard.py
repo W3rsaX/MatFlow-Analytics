@@ -91,11 +91,11 @@ with st.sidebar:
     if st.button("📅 План обновления автопарка", width='stretch'):
         st.switch_page("pages/4_Auto_PLan.py")
 
-    if st.button("🛡️ Оптимизация страхового запаса сырья", width='stretch'):
+    if st.button("🛡️ Оптимизация управления запасами сырья", width='stretch'):
         st.switch_page("pages/5_Safety_Stock.py")
 
-    if st.button("⭐ Анализ поставщиков по качеству сырья", width='stretch'):
-        st.switch_page("pages/6_Supplier_Quality.py")
+    if st.button("⭐ Анализ влияния времени года на стоимость сырья", width='stretch'):
+        st.switch_page("pages/6_Disperison.py")
 
     # Кнопка выхода
     st.markdown("---")

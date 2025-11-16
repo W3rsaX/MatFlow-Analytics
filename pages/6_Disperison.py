@@ -1,15 +1,15 @@
 import os
-
 import pandas as pd
 import streamlit as st
-
 from utils.styles import load_css
+from autoTasks.Task6 import Task6
+from displays import dispersive_6
 
 favicon_path = os.path.join('assets', 'logo.ico')
 
 # Конфигурация страницы
 st.set_page_config(
-    page_title="ООО «Строй-Бетон» - Анализ поставщиков по качеству сырья",
+    page_title="ООО «Строй-Бетон» - Анализ влияния времени года на стоимость сырья",
     page_icon=favicon_path,
     layout="centered",
     menu_items={
@@ -27,7 +27,7 @@ st.logo("assets/logo.png")
 if 'authentication_status' not in st.session_state or not st.session_state.authentication_status:
     st.switch_page("Home.py")
 
-st.title("Анализ поставщиков по качеству сырья")
+st.title("Анализ влияния времени года на стоимость сырья")
 
 # Загрузка данных
 st.header("Загрузка данных")
@@ -36,14 +36,13 @@ uploaded_file = st.file_uploader("Загрузите данные (CSV)", type="
 if uploaded_file:
     df = pd.read_csv(uploaded_file, sep=';', encoding='utf-8-sig')
     if df is not None:
-
         st.success("Данные успешно загружены!")
 
         if st.checkbox("Показать данные"):
-            st.dataframe(df.head())
+            st.dataframe(df, hide_index=True)
 
         # Анализ
-        st.header("Решение ")
+        st.header("Решение")
 
         # Центрируем кнопку запуска прогноза
         col1, col2, col3 = st.columns([1, 1, 1])
@@ -51,10 +50,18 @@ if uploaded_file:
             button_clicked = st.button("Решить", width='stretch', key="run_forecast")
 
         if button_clicked:
-            # Здесь будет реальная модель
-            st.success("Анализ поставщиков по качеству сырья выполнен успешно!")
+            try:
+                # Создаем экземпляр задачи и решаем
+                task = Task6(df)
+                material_name, optimal_season, anova_results = task.solve()  # Теперь получаем 3 значения
 
-            st.subheader("Результаты")
+                st.success("Анализ влияния времени года на стоимость сырья выполнен успешно!")
+
+                # Отображаем результаты через dispersive_6
+                dispersive_6.show(material_name, optimal_season, anova_results)
+
+            except Exception as e:
+                st.error(f"Ошибка при выполнении анализа: {str(e)}")
 
     else:
         st.error("Ошибка загрузки файла")
